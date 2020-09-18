@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <p>
+    <strong>Name:</strong>
+    <%= @restaurant.name %>
+  </p>
+
+  <p>
+    <strong>Address:</strong>
+    <%= @restaurant.address %>
+  </p>
+
+  <p>
+    <strong>Category:</strong>
+    <%= @restaurant.category %>
+  </p>
+
+  <p class="mb-5">
+    <strong>Phone Number:</strong>
+    <%= @restaurant.phone_number %>
+  </p>
+ 
+  <p>
+    <div class="btn btn-primary ml-5">
+      <%= link_to 'Add a Review', new_restaurant_review_path(@restaurant) %> 
+    </div>
+  </p>
+
+  <% if @restaurant.reviews.count.zero? %>
+    <p>
+      Be the first to leave a review!
+    </p>
+  <% else %>
+      <ul>
+        <% @restaurant.reviews.each do |review| %>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Content</th>
+                <th>Rating</th>
+                <th colspan="2"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                  <td><%= review.content %></td>
+                  <td><%= review.rating %></td>
+                </tr>
+            </tbody>
+          </table>
+        <% end %>
+      </ul>
+  <% end %>
+
+  <div class="btn btn-primary ml-5">
+    <%= link_to 'Back', restaurants_path %>
+  </div>
+</div>
